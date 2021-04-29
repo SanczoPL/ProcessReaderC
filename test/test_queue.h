@@ -4,7 +4,7 @@
 #include <cmocka.h>
 #include "../src/queue.h"
 
-static void processreader_newNode(void **state) {
+static void queue_newNode(void **state) {
     (void) state; /* unused */
 
     struct QNode* temp = newNode(123, "123");
@@ -15,7 +15,7 @@ static void processreader_newNode(void **state) {
     free(temp);
 }
 
-static void processreader_createQueue(void **state) {
+static void queue_createQueue(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -28,7 +28,7 @@ static void processreader_createQueue(void **state) {
     deleteQueue(q);
 }
 
-static void processreader_push_back(void **state) {
+static void queue_push_back(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -60,7 +60,7 @@ static void processreader_push_back(void **state) {
 }
 
 
-static void processreader_isEmpty(void **state) {
+static void queue_isEmpty(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -81,7 +81,7 @@ static void processreader_isEmpty(void **state) {
     deleteQueue(q);
 }
 
-static void processreader_pop_front(void **state) {
+static void queue_pop_front(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -116,7 +116,7 @@ static void processreader_pop_front(void **state) {
     deleteQueue(q);
 }
 
-static void processreader_deleteQueue(void **state) {
+static void queue_deleteQueue(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -134,7 +134,7 @@ static void processreader_deleteQueue(void **state) {
     assert_true(deleteQueue(q));   
 }
 
-static void processreader_deleteQueue_empty(void **state) {
+static void queue_deleteQueue_empty(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
@@ -145,7 +145,7 @@ static void processreader_deleteQueue_empty(void **state) {
     assert_true(deleteQueue(q));   
 }
 
-static void processreader_deleteQueue_empty_after_pop(void **state) {
+static void queue_deleteQueue_empty_after_pop(void **state) {
     (void) state; /* unused */
 
     struct Queue* q = createQueue();
