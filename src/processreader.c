@@ -15,7 +15,7 @@ int printProcess(const char * procDir)
 	struct QNode *temp = q->front;
 	if(temp!= NULL)
 	{
-        printf("%s %d\n", temp->name, temp->pid);
+		printf("%s %d\n", temp->name, temp->pid);
 		while(temp->next != NULL)
 		{
 			
@@ -24,7 +24,7 @@ int printProcess(const char * procDir)
 			{
 				break;
 			}
-            printf("%s %d\n", temp->name, temp->pid);
+			printf("%s %d\n", temp->name, temp->pid);
 		}
 	}
 	deleteQueue(q);
@@ -83,7 +83,7 @@ void readProcessIntoQueue(struct Queue* q, const char * procDir)
 		getPid( name, curr_path);
 		push_back(q, pid, name);
 	}
-   		 
+ 
 	free(directory);
 	free(dir);
 	free(curr_path);
