@@ -99,11 +99,8 @@ bool showName(char* pid, const char* procDir)
 
     struct Queue* q = createQueue();
     readProcessIntoQueue(q, procDir);
-
 	struct Queue* findQ = findPidInQueue(q, pidInt);
-
 	bool returnFlag = printNameFromQueue(findQ);
-
 	deleteQueue(findQ);
     deleteQueue(q);
     return returnFlag;
@@ -116,12 +113,8 @@ bool showPid(char* name, const char* procDir)
 #endif
     struct Queue* q = createQueue();
     readProcessIntoQueue(q, procDir);
-
-
 	struct Queue* findQ = findNameInQueue(q, name);
-
 	bool returnFlag = printPidFromQueue(findQ);
-    
 	deleteQueue(findQ);
     deleteQueue(q);
     return returnFlag;
