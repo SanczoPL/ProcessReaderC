@@ -21,6 +21,16 @@ struct Queue {
 	struct QNode *front, *rear;
 };
 
+bool printQueue(struct Queue* q);
+
+bool printNameFromQueue(struct Queue* q);
+
+bool printPidFromQueue(struct Queue* q);
+
+struct Queue* findPidInQueue(struct Queue* q, int k);
+
+struct Queue* findNameInQueue(struct Queue* q, char * name);
+
 struct QNode* newNode(int k, char* name);
   
 struct Queue* createQueue();

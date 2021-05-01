@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include <fcntl.h>
 
-int printProcess(const char * procDir);
+bool printProcess(const char* procDir);
 
 bool checkIsDigit(char input[]);
 
