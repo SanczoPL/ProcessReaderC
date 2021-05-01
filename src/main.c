@@ -71,8 +71,8 @@ void usage(char* progName)
     printf("%s [Options] [Optional]\n", progName);
     printf("Options:\n");
     printf("\t-a        | show all process\n");
-    printf("\t-u <uid>  | show <uid> process name\n");
-    printf("\t-n <name> | show uid of process <name>\n");
+    printf("\t-u <pid>  | show <pid> process name\n");
+    printf("\t-n <name> | show pid of process <name>\n");
     printf("Optional:\n");
     printf("\t-f <file> | save output to <file> \n");
 }
