@@ -1,6 +1,6 @@
 #include "processreader.h"
 
-#define DEBUG
+//#define DEBUG
 
 static const char* logError = "\x1b[31m";
 static const char* logEnd = "\x1b[0m";

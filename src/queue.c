@@ -1,6 +1,6 @@
 #include "queue.h"
 
-#define DEBUG
+//#define DEBUG
 
 static const char* log_error = "\x1b[31m";
 static const char* log_end = "\x1b[0m";
