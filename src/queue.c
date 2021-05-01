@@ -16,11 +16,14 @@ bool printQueue(struct Queue* q)
 		returnFlag = true;
 		struct QNode* temp = q->front;
 
-		if (temp != NULL) {
-			while (temp->next != NULL) {    
-				printf("%s %d\n", temp->name, temp->pid);
-				temp = temp->next;
+		while (temp != NULL) 
+		{
+			printf("%s %d\n", temp->name, temp->pid);
+			if (temp->next == NULL)
+			{   
+				break; 
 			}
+			temp = temp->next;
 		}
 	}
 	return returnFlag;
@@ -34,11 +37,14 @@ bool printNameFromQueue(struct Queue* q)
 		returnFlag = true;
 		struct QNode* temp = q->front;
 
-		if (temp != NULL) {
-			while (temp->next != NULL) {    
-				printf("%s\n", temp->name);
-				temp = temp->next;
-			}
+		while (temp != NULL) 
+		{
+			printf("%s\n", temp->name);
+			if (temp->next == NULL)
+			{   
+				break; 
+			} 
+			temp = temp->next;
 		}
 	}
 	return returnFlag;
@@ -52,11 +58,14 @@ bool printPidFromQueue(struct Queue* q)
 		returnFlag = true;
 		struct QNode* temp = q->front;
 
-		if (temp != NULL) {
-			while (temp->next != NULL) {    
-				printf("%d\n", temp->pid);
-				temp = temp->next;
+		while (temp != NULL) 
+		{
+			printf("%d\n", temp->pid);
+			if (temp->next == NULL)
+			{   
+				break; 
 			}
+			temp = temp->next;
 		}
 	}
 	return returnFlag;
