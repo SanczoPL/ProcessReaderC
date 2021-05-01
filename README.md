@@ -1,5 +1,5 @@
 ### ProcessReaderC:
-    processreader [Options] [Optional]
+    ./processreader [Options] [Optional]
     
     Options:
     -a        | show all process
