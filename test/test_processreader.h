@@ -45,18 +45,7 @@ static void processreader_readProcessIntoQueue(void** state)
 
     assert_int_equal(q->count, 1);
 
-    struct QNode* temp = q->front;
-    if (temp != NULL) {
-        printf("%s %d\n", temp->name, temp->pid);
-        while (temp->next != NULL) {
-
-            temp = temp->next;
-            if (temp == NULL) {
-                break;
-            }
-            printf("%s %d\n", temp->name, temp->pid);
-        }
-    }
+    assert_true(printQueue(q));
     deleteQueue(q);
     assert_int_equal(q->count, 0);
 }
