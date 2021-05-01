@@ -8,10 +8,10 @@ static const char* logWarn = "\x1b[33m";
 static const char* logDebug = "\x1b[32m";
 
 
-bool printProcess(const char* procDir)
+bool printProcess(const char* procDirInput)
 {
     struct Queue* q = createQueue();
-    readProcessIntoQueue(q, procDir);
+    readProcessIntoQueue(q, procDirInput);
     bool returnFlag = printQueue(q);
     deleteQueue(q);
 	return returnFlag;
@@ -34,19 +34,19 @@ bool checkIsDigit(char input[])
     return true;
 }
 
-void readProcessIntoQueue(struct Queue* q, const char* procDir)
+void readProcessIntoQueue(struct Queue* q, const char* procDirInput)
 {
     char *dirnameBuffer, *currentPath = malloc(sizeof(char) * 100);
     DIR* directory;
-    directory = opendir(procDir);
+    directory = opendir(procDirInput);
 
     if (directory == NULL) {
-        printf("%s\nERROR: unable to open %s for read\n\n%s", logError, procDir, logEnd);
+        printf("%s\nERROR: unable to open %s for read\n\n%s", logError, procDirInput, logEnd);
         free(currentPath);
         return;
     }
 #ifdef DEBUG
-    printf("%sDEBUG: opened %s for read:\n%s", logDebug, procDir, logEnd);
+    printf("%sDEBUG: opened %s for read:\n%s", logDebug, procDirInput, logEnd);
 #endif
     struct dirent* dir;
 	char* name = malloc(sizeof(char) * 100);
@@ -55,7 +55,7 @@ void readProcessIntoQueue(struct Queue* q, const char* procDir)
         if (!checkIsDigit(dirnameBuffer)) {
             continue;
         }
-        snprintf(currentPath, 100, "%s%s%s", "/proc/", dirnameBuffer, "/status");
+        snprintf(currentPath, 100, "%s/%s/%s", procDirInput,  dirnameBuffer, "status");
         int pid = strtol(dirnameBuffer, NULL, 10);
         getPid(name, currentPath);
         push_back(q, pid, name);
@@ -86,7 +86,7 @@ void getPid(char* name, char* path)
     return;
 }
 
-bool showName(char* pid, const char* procDir)
+bool showName(char* pid, const char* procDirInput)
 {
 #ifdef DEBUG
     printf("%sDEBUG: showName(%s)\n%s", logDebug, pid, logEnd);
@@ -98,7 +98,7 @@ bool showName(char* pid, const char* procDir)
     int pidInt = strtol(pid, NULL, 10);
 
     struct Queue* q = createQueue();
-    readProcessIntoQueue(q, procDir);
+    readProcessIntoQueue(q, procDirInput);
 	struct Queue* findQ = findPidInQueue(q, pidInt);
 	bool returnFlag = printNameFromQueue(findQ);
 	deleteQueue(findQ);
@@ -106,13 +106,13 @@ bool showName(char* pid, const char* procDir)
     return returnFlag;
 }
 
-bool showPid(char* name, const char* procDir)
+bool showPid(char* name, const char* procDirInput)
 {
 #ifdef DEBUG
-    printf("%sDEBUG: showPid(%s)\n%s", logDebug, name, logEnd);
+    printf("%sDEBUG: showPid(%s, %s)\n%s", logDebug, name, procDirInput, logEnd);
 #endif
     struct Queue* q = createQueue();
-    readProcessIntoQueue(q, procDir);
+    readProcessIntoQueue(q, procDirInput);
 	struct Queue* findQ = findNameInQueue(q, name);
 	bool returnFlag = printPidFromQueue(findQ);
 	deleteQueue(findQ);

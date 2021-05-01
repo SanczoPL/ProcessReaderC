@@ -102,6 +102,7 @@ static void queue_findNameInQueue_oneValue(void** state)
     (void)state; /* unused */
 
     struct Queue* q = createQueue();
+    assert_true(isEmpty(q));
 
     assert_int_equal(q->count, 0);
     assert_non_null(q);

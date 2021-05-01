@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 project(processreader VERSION 0.0.1 DESCRIPTION "processreader" LANGUAGES C)
 
 file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/bin/142804")
 
 configure_file(test/test_proc_status.txt ${CMAKE_BINARY_DIR}/test_proc_status.txt)
-configure_file(test/test_proc_status.txt ${CMAKE_BINARY_DIR}/bin/142804)
+configure_file(test/test_proc_status.txt ${CMAKE_BINARY_DIR}/bin/142804/status)
 
 add_subdirectory(cmocka-1.1.3)
 
