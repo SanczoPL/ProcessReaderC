@@ -2,10 +2,8 @@
 
 //#define DEBUG
 
-static const char* log_error = "\x1b[31m";
-static const char* log_end = "\x1b[0m";
-static const char* log_warn = "\x1b[33m";
-static const char* log_debug = "\x1b[32m";
+static const char* logEnd = "\x1b[0m";
+static const char* logDebug = "\x1b[32m";
 
 
 bool printQueue(struct Queue* q)
@@ -141,7 +139,7 @@ struct Queue* createQueue()
 void push_back(struct Queue* q, int k, char* name)
 {
 #ifdef DEBUG
-    printf("%sDEBUG: pushQueue(%d,%s)\n%s", log_debug, k, name, log_end);
+    printf("%sDEBUG: pushQueue(%d,%s)\n%s", logDebug, k, name, logEnd);
 #endif
     struct QNode* temp = newNode(k, name);
 
@@ -189,7 +187,7 @@ void pop_front(struct Queue* q)
 bool deleteQueue(struct Queue* q)
 {
 #ifdef DEBUG
-    printf("%sDEBUG: deleteQueue()\n%s", log_debug, log_end);
+    printf("%sDEBUG: deleteQueue()\n%s", logDebug, logEnd);
 #endif
 
     while (q->front != NULL) {

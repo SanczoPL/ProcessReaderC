@@ -36,13 +36,13 @@ bool checkIsDigit(char input[])
 
 void readProcessIntoQueue(struct Queue* q, const char* procDir)
 {
-    char *dirname_buf, *curr_path = malloc(sizeof(char) * 100);
+    char *dirnameBuffer, *currentPath = malloc(sizeof(char) * 100);
     DIR* directory;
     directory = opendir(procDir);
 
     if (directory == NULL) {
         printf("%s\nERROR: unable to open %s for read\n\n%s", logError, procDir, logEnd);
-        free(curr_path);
+        free(currentPath);
         return;
     }
 #ifdef DEBUG
@@ -51,18 +51,18 @@ void readProcessIntoQueue(struct Queue* q, const char* procDir)
     struct dirent* dir;
 	char* name = malloc(sizeof(char) * 100);
     while ((dir = readdir(directory)) != NULL) {
-        dirname_buf = dir->d_name;
-        if (!checkIsDigit(dirname_buf)) {
+        dirnameBuffer = dir->d_name;
+        if (!checkIsDigit(dirnameBuffer)) {
             continue;
         }
-        snprintf(curr_path, 100, "%s%s%s", "/proc/", dirname_buf, "/status");
-        int pid = strtol(dirname_buf, NULL, 10);
-        getPid(name, curr_path);
+        snprintf(currentPath, 100, "%s%s%s", "/proc/", dirnameBuffer, "/status");
+        int pid = strtol(dirnameBuffer, NULL, 10);
+        getPid(name, currentPath);
         push_back(q, pid, name);
     }
     free(directory);
     free(dir);
-    free(curr_path);
+    free(currentPath);
     free(name);
     return;
 }
