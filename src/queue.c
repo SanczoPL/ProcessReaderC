@@ -5,117 +5,100 @@
 static const char* logEnd = "\x1b[0m";
 static const char* logDebug = "\x1b[32m";
 
-
 bool printQueue(struct Queue* q)
 {
-	bool returnFlag = false;
-	if(!isEmpty(q))
-	{
-		returnFlag = true;
-		struct QNode* temp = q->front;
+    bool returnFlag = false;
+    if (!isEmpty(q)) {
+        returnFlag = true;
+        struct QNode* temp = q->front;
 
-		while (temp != NULL) 
-		{
-			printf("%s %d\n", temp->name, temp->pid);
-			if (temp->next == NULL)
-			{   
-				break; 
-			}
-			temp = temp->next;
-		}
-	}
-	return returnFlag;
+        while (temp != NULL) {
+            printf("%s %d\n", temp->name, temp->pid);
+            if (temp->next == NULL) {
+                break;
+            }
+            temp = temp->next;
+        }
+    }
+    return returnFlag;
 }
 
 bool printNameFromQueue(struct Queue* q)
 {
-	bool returnFlag = false;
-	if(!isEmpty(q))
-	{
-		returnFlag = true;
-		struct QNode* temp = q->front;
+    bool returnFlag = false;
+    if (!isEmpty(q)) {
+        returnFlag = true;
+        struct QNode* temp = q->front;
 
-		while (temp != NULL) 
-		{
-			printf("%s\n", temp->name);
-			if (temp->next == NULL)
-			{   
-				break; 
-			} 
-			temp = temp->next;
-		}
-	}
-	return returnFlag;
+        while (temp != NULL) {
+            printf("%s\n", temp->name);
+            if (temp->next == NULL) {
+                break;
+            }
+            temp = temp->next;
+        }
+    }
+    return returnFlag;
 }
 
 bool printPidFromQueue(struct Queue* q)
 {
-	bool returnFlag = false;
-	if(!isEmpty(q))
-	{
-		returnFlag = true;
-		struct QNode* temp = q->front;
+    bool returnFlag = false;
+    if (!isEmpty(q)) {
+        returnFlag = true;
+        struct QNode* temp = q->front;
 
-		while (temp != NULL) 
-		{
-			printf("%d\n", temp->pid);
-			if (temp->next == NULL)
-			{   
-				break; 
-			}
-			temp = temp->next;
-		}
-	}
-	return returnFlag;
+        while (temp != NULL) {
+            printf("%d\n", temp->pid);
+            if (temp->next == NULL) {
+                break;
+            }
+            temp = temp->next;
+        }
+    }
+    return returnFlag;
 }
 
 struct Queue* findPidInQueue(struct Queue* q, int k)
 {
     struct Queue* outQueue = createQueue();
-    
-     if (q->front == NULL) {
+
+    if (q->front == NULL) {
         return outQueue;
     }
-	struct QNode* temp = q->front;
+    struct QNode* temp = q->front;
 
-
-	while (temp != NULL) 
-	{
-		if (k == temp->pid) 
-		{
-			push_back(outQueue, temp->pid, temp->name);
-		}
-		if(temp->next == NULL)
-		{
-			break;
-		}
-		temp = temp->next;
-	}
+    while (temp != NULL) {
+        if (k == temp->pid) {
+            push_back(outQueue, temp->pid, temp->name);
+        }
+        if (temp->next == NULL) {
+            break;
+        }
+        temp = temp->next;
+    }
     return outQueue;
 }
 
-struct Queue* findNameInQueue(struct Queue* q, char * name)
+struct Queue* findNameInQueue(struct Queue* q, char* name)
 {
     struct Queue* outQueue = createQueue();
-    
-     if (q->front == NULL) {
+
+    if (q->front == NULL) {
         return outQueue;
     }
-	struct QNode* temp = q->front;
+    struct QNode* temp = q->front;
 
+    while (temp != NULL) {
+        if (strcmp(name, temp->name) == 0) {
+            push_back(outQueue, temp->pid, temp->name);
+        }
+        if (temp->next == NULL) {
+            break;
+        }
+        temp = temp->next;
+    }
 
-	while (temp != NULL) {
-		if (strcmp(name, temp->name) == 0) 
-		{
-			push_back(outQueue, temp->pid, temp->name);
-		}
-		if(temp->next == NULL)
-		{
-			break;
-		}
-		temp = temp->next;
-	}
-    
     return outQueue;
 }
 

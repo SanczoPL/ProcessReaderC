@@ -4,22 +4,21 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-
 static void queue_printQueues(void** state)
 {
     (void)state; /* unused */
 
     struct Queue* q = createQueue();
 
-	assert_false(printNameFromQueue(q));
-	assert_false(printPidFromQueue(q));
-	assert_false(printQueue(q));
+    assert_false(printNameFromQueue(q));
+    assert_false(printPidFromQueue(q));
+    assert_false(printQueue(q));
 
-	push_back(q, 111, "111");
+    push_back(q, 111, "111");
 
-	assert_true(printNameFromQueue(q));
-	assert_true(printPidFromQueue(q));
-	assert_true(printQueue(q));
+    assert_true(printNameFromQueue(q));
+    assert_true(printPidFromQueue(q));
+    assert_true(printQueue(q));
 }
 
 static void queue_findPidInQueue(void** state)
@@ -45,8 +44,8 @@ static void queue_findPidInQueue(void** state)
 
     struct Queue* findQ = findPidInQueue(q, 444);
     assert_int_equal(findQ->count, 1);
-	assert_int_equal(findQ->front->pid, 444);
-	assert_string_equal(findQ->front->name, "444");
+    assert_int_equal(findQ->front->pid, 444);
+    assert_string_equal(findQ->front->name, "444");
 }
 
 static void queue_findPidInQueue_oneValue(void** state)
@@ -65,8 +64,8 @@ static void queue_findPidInQueue_oneValue(void** state)
 
     struct Queue* findQ = findPidInQueue(q, 111);
     assert_int_equal(findQ->count, 1);
-	assert_int_equal(findQ->front->pid, 111);
-	assert_string_equal(findQ->front->name, "111");
+    assert_int_equal(findQ->front->pid, 111);
+    assert_string_equal(findQ->front->name, "111");
 }
 
 static void queue_findNameInQueue(void** state)
@@ -92,9 +91,9 @@ static void queue_findNameInQueue(void** state)
 
     struct Queue* findQ = findNameInQueue(q, "666");
     assert_int_equal(findQ->count, 1);
-	assert_int_equal(findQ->front->pid, 666);
-	assert_string_equal(findQ->front->name, "666");
-	assert_false(isEmpty(findQ));
+    assert_int_equal(findQ->front->pid, 666);
+    assert_string_equal(findQ->front->name, "666");
+    assert_false(isEmpty(findQ));
 }
 
 static void queue_findNameInQueue_oneValue(void** state)
@@ -115,9 +114,9 @@ static void queue_findNameInQueue_oneValue(void** state)
 
     struct Queue* findQ = findNameInQueue(q, "111");
     assert_int_equal(findQ->count, 1);
-	assert_int_equal(findQ->front->pid, 111);
-	assert_string_equal(findQ->front->name, "111");
-	assert_false(isEmpty(findQ));
+    assert_int_equal(findQ->front->pid, 111);
+    assert_string_equal(findQ->front->name, "111");
+    assert_false(isEmpty(findQ));
 }
 
 static void queue_newNode(void** state)

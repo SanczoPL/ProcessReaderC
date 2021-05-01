@@ -7,14 +7,13 @@ static const char* logEnd = "\x1b[0m";
 static const char* logWarn = "\x1b[33m";
 static const char* logDebug = "\x1b[32m";
 
-
 bool printProcess(const char* procDirInput)
 {
     struct Queue* q = createQueue();
     readProcessIntoQueue(q, procDirInput);
     bool returnFlag = printQueue(q);
     deleteQueue(q);
-	return returnFlag;
+    return returnFlag;
 }
 
 bool checkIsDigit(char input[])
@@ -49,13 +48,13 @@ void readProcessIntoQueue(struct Queue* q, const char* procDirInput)
     printf("%sDEBUG: opened %s for read:\n%s", logDebug, procDirInput, logEnd);
 #endif
     struct dirent* dir;
-	char* name = malloc(sizeof(char) * 100);
+    char* name = malloc(sizeof(char) * 100);
     while ((dir = readdir(directory)) != NULL) {
         dirnameBuffer = dir->d_name;
         if (!checkIsDigit(dirnameBuffer)) {
             continue;
         }
-        snprintf(currentPath, 100, "%s/%s/%s", procDirInput,  dirnameBuffer, "status");
+        snprintf(currentPath, 100, "%s/%s/%s", procDirInput, dirnameBuffer, "status");
         int pid = strtol(dirnameBuffer, NULL, 10);
         getPid(name, currentPath);
         push_back(q, pid, name);
@@ -99,9 +98,9 @@ bool showName(char* pid, const char* procDirInput)
 
     struct Queue* q = createQueue();
     readProcessIntoQueue(q, procDirInput);
-	struct Queue* findQ = findPidInQueue(q, pidInt);
-	bool returnFlag = printNameFromQueue(findQ);
-	deleteQueue(findQ);
+    struct Queue* findQ = findPidInQueue(q, pidInt);
+    bool returnFlag = printNameFromQueue(findQ);
+    deleteQueue(findQ);
     deleteQueue(q);
     return returnFlag;
 }
@@ -113,9 +112,9 @@ bool showPid(char* name, const char* procDirInput)
 #endif
     struct Queue* q = createQueue();
     readProcessIntoQueue(q, procDirInput);
-	struct Queue* findQ = findNameInQueue(q, name);
-	bool returnFlag = printPidFromQueue(findQ);
-	deleteQueue(findQ);
+    struct Queue* findQ = findNameInQueue(q, name);
+    bool returnFlag = printPidFromQueue(findQ);
+    deleteQueue(findQ);
     deleteQueue(q);
     return returnFlag;
 }
