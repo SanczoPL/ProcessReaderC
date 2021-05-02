@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 {
 	char* input_param = NULL;
 	char* file_name = NULL;
-	unsigned char state = 0;
+	char state = 0;
 	if (argc < 2) {
 		showUsageAndExit(argv[0]);
 	}
