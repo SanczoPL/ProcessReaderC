@@ -1,6 +1,6 @@
 #include "processreader.h"
 
-//#define DEBUG
+#define DEBUG
 
 static const char* logError = "\x1b[31m";
 static const char* logEnd = "\x1b[0m";
@@ -17,20 +17,29 @@ bool printProcess(const char* procDirInput)
 	return returnFlag;
 }
 
-bool checkIsDigit(char input[])
+bool checkIsDigit(char* input)
 {
+	#ifdef DEBUG
+	printf("%sDEBUG: checkIsDigit(): len:%ld \n%s", logWarn, strlen(input),  logEnd);
+	#endif
 	int i;
 	for (i = 0; i < strlen(input); i++) {
 		if (!isdigit(input[i])) {
-#ifdef DEBUG
-			printf("%sDEBUG: checkIsDigit(): char[%d]: is invalid\n%s", logWarn, i, logEnd);
-#endif
+			#ifdef DEBUG
+			printf("%sDEBUG: checkIsDigit(): char[%d]:%c is invalid\n%s", logWarn, i, input[i],  logEnd);
+			#endif
 			return false;
 		}
+		else
+		{
+			#ifdef DEBUG
+			printf("%sDEBUG: checkIsDigit(): char[%d]:%c is valid\n%s", logDebug, i, input[i],  logEnd);
+			#endif
+		}
 	}
-#ifdef DEBUG
+	#ifdef DEBUG
 	printf("%sDEBUG: checkIsDigit(): valid\n%s", logDebug, logEnd);
-#endif
+	#endif
 	return true;
 }
 

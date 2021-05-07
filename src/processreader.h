@@ -10,7 +10,7 @@
 
 bool printProcess(const char* procDirInput);
 
-bool checkIsDigit(char input[]);
+bool checkIsDigit(char* input);
 
 void readProcessIntoQueue(struct Queue* q, const char * procDirInput);
 

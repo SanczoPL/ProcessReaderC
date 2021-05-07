@@ -12,6 +12,10 @@ static void processreader_checkIsDigit(void** state)
     assert_false(checkIsDigit("asds"));
     assert_true(checkIsDigit("123124124124"));
     assert_false(checkIsDigit("a"));
+    char * test = "123";
+    assert_true(checkIsDigit(test));
+    char * test2 = "12312312d";
+    assert_false(checkIsDigit(test2));
 }
 
 static void processreader_getPid(void** state)
